@@ -8,7 +8,7 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(cors({ origin: 'https://inscripciones-dic.vercel.app' }));
+app.use(cors({ origin: 'https://form-diciembre.vercel.app' }));
 app.use(express.json());
 
 app.use("/api", router);
