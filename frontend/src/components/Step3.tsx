@@ -7,7 +7,7 @@ import { nextStep, prevStep, updateAcademico } from '../store';
 import type { RootState } from '../store';
 import { getAnios } from '../api';
 import { clsx } from 'clsx';
-import { ChevronDown, Sun, Moon } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 
 const schema = z.object({
   id_anio: z.string().min(1, "Seleccione un año de cursada"),

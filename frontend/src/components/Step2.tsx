@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { nextStep, prevStep, updateAcademico } from '../store';
 import type { RootState } from '../store';
 import { getCarreras } from '../api';
-import { Check, Calendar, Hash, ChevronDown } from 'lucide-react';
+import { Check, Calendar, ChevronDown } from 'lucide-react';
 import { clsx } from 'clsx';
 
 const schema = z.object({

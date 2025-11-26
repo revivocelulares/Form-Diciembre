@@ -33,7 +33,6 @@ export const Dashboard = () => {
   const [listaCarreras, setListaCarreras] = useState<Carrera[]>([]);
   const [listaAnios, setListaAnios] = useState<Anio[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
   
   // Filtros
   const [search, setSearch] = useState('');
@@ -52,10 +51,8 @@ export const Dashboard = () => {
       setInscripciones(inscRes.data);
       setListaCarreras(carrerasRes.data);
       setListaAnios(aniosRes.data);
-      setError('');
     } catch (err) {
       console.error(err);
-      setError('Error al cargar datos');
     } finally {
       setLoading(false);
     }
