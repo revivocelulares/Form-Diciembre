@@ -155,7 +155,8 @@ async function seed() {
                             "Periodismo Digital", 
                             "Diseño Gráfico", 
                             "Producciones Audiovisuales",
-                            "Marketing y Publicidad Digital"];
+                            "Marketing y Publicidad Digital",
+                            "Práctica Profesional Integral"];
       for (const mat of materias_PM_3) {
         await db.execute({
             sql: "INSERT OR IGNORE INTO materias (nombre, id_carrera, id_anio) VALUES (?, ?, ?)",
@@ -186,7 +187,8 @@ async function seed() {
                             "Instalaciones Eléctricas",
                             "Instalaciones Térmicas y Fluidos",
                             "Energía Hidráulica",
-                            "Energía Solar"];
+                            "Energía Solar",
+                            "Práctica Profesionalizante I"];
       for (const mat of materias_ER_2) {
         await db.execute({
             sql: "INSERT OR IGNORE INTO materias (nombre, id_carrera, id_anio) VALUES (?, ?, ?)",
@@ -201,7 +203,8 @@ async function seed() {
                             "Gestión de las Energías Renovables",
                             "Instalaciones de Energías Renovables",
                             "Energía Eólica",
-                            "Energía de la Biomasa"];
+                            "Energía de la Biomasa",
+                            "Práctica Profesionalizante II"];
       for (const mat of materias_ER_3) {
         await db.execute({
             sql: "INSERT OR IGNORE INTO materias (nombre, id_carrera, id_anio) VALUES (?, ?, ?)",
@@ -248,7 +251,8 @@ async function seed() {
                             "Recuperación Asistida",
                             "Mantenimiento y Confiabilidad",
                             "Seguridad en Yacimientos",
-                            "Ética y Deontología Profesional"];
+                            "Formación y Desarrollo Profesional",
+                            "Práctica Profesional Integral"];
       for (const mat of materias_PyG_3) {
         await db.execute({
             sql: "INSERT OR IGNORE INTO materias (nombre, id_carrera, id_anio) VALUES (?, ?, ?)",
@@ -296,7 +300,8 @@ async function seed() {
                             "Electricidad",
                             "Soldadura",
                             "Máquinas - Herramientas",
-                            "Formación y Desarrollo Profesional"];
+                            "Formación y Desarrollo Profesional",
+                            "Práctica Profesional Integral"];
       for (const mat of materias_MI_3) {
         await db.execute({
             sql: "INSERT OR IGNORE INTO materias (nombre, id_carrera, id_anio) VALUES (?, ?, ?)",
@@ -343,7 +348,8 @@ async function seed() {
                             "Sistemas Integrados de Gestión",
                             "Control Estadístico de Procesos",
                             "Gestión de Almacenes",
-                            "Estrategia Logística"];
+                            "Estrategia Logística",
+                            "Práctica Profesional Integral"];
       for (const mat of materias_L_3) {
         await db.execute({
             sql: "INSERT OR IGNORE INTO materias (nombre, id_carrera, id_anio) VALUES (?, ?, ?)",
@@ -390,7 +396,8 @@ async function seed() {
                             "Proyecto Industrial",
                             "Laboratorio de Producción Industrial",
                             "Toxicología Alimentaria",
-                            "Formación y Desarrollo Profesional"];
+                            "Formación y Desarrollo Profesional",
+                            "Práctica Profesional Integral"];
       for (const mat of materias_A_3) {
         await db.execute({
             sql: "INSERT OR IGNORE INTO materias (nombre, id_carrera, id_anio) VALUES (?, ?, ?)",
@@ -440,7 +447,8 @@ async function seed() {
                             "Proyecto Tecnológico Especifico",
                             "Costura Industrial",
                             "Geometrales",
-                            "Planif. y Control de la Producción Textil"];
+                            "Planif. y Control de la Producción Textil",
+                            "Práctica Profesional Integral"];
       for (const mat of materias_IyT_3) {
         await db.execute({
             sql: "INSERT OR IGNORE INTO materias (nombre, id_carrera, id_anio) VALUES (?, ?, ?)",
@@ -485,7 +493,8 @@ async function seed() {
                             "Seminario de Negociación",
                             "Gestión Comercial II",
                             "Impuestos",
-                            "Proyectos de Inversión"];
+                            "Proyectos de Inversión",
+                            "Práctica Profesional Integral"];
       for (const mat of materias_GA_3) {
         await db.execute({
             sql: "INSERT OR IGNORE INTO materias (nombre, id_carrera, id_anio) VALUES (?, ?, ?)",
