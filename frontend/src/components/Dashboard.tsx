@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getInscripciones, getCarreras, getAnios } from '../api';
+import { getInscripciones, getCarreras, getAnios, getMaterias } from '../api';
 import { Search, Filter, RefreshCw, LayoutDashboard, Download } from 'lucide-react';
 import { clsx } from 'clsx';
 import { utils, writeFile } from 'xlsx';
@@ -28,16 +28,23 @@ interface Anio {
   nombre: string;
 }
 
+interface Materia {
+  id_materia: number;
+  nombre: string;
+}
+
 export const Dashboard = () => {
   const [inscripciones, setInscripciones] = useState<Inscripcion[]>([]);
   const [listaCarreras, setListaCarreras] = useState<Carrera[]>([]);
   const [listaAnios, setListaAnios] = useState<Anio[]>([]);
+  const [listaMaterias, setListaMaterias] = useState<Materia[]>([]);
   const [loading, setLoading] = useState(true);
   
   // Filtros
   const [search, setSearch] = useState('');
   const [filterCarrera, setFilterCarrera] = useState('');
   const [filterAnio, setFilterAnio] = useState('');
+  const [filterMateria, setFilterMateria] = useState('');
 
   const fetchData = async () => {
     setLoading(true);
@@ -62,6 +69,31 @@ export const Dashboard = () => {
     fetchData();
   }, []);
 
+  // Cargar materias cuando cambian carrera o año
+  useEffect(() => {
+    const cargarMaterias = async () => {
+      if (filterCarrera && filterAnio) {
+        const carreraSeleccionada = listaCarreras.find(c => c.nombre === filterCarrera);
+        const anioSeleccionado = listaAnios.find(a => a.nombre === filterAnio);
+
+        if (carreraSeleccionada && anioSeleccionado) {
+          try {
+            const res = await getMaterias(carreraSeleccionada.id_carrera, anioSeleccionado.id_anio);
+            setListaMaterias(res.data);
+          } catch (error) {
+            console.error("Error cargando materias:", error);
+            setListaMaterias([]);
+          }
+        }
+      } else {
+        setListaMaterias([]);
+      }
+      setFilterMateria(''); // Resetear materia al cambiar carrera o año
+    };
+    
+    cargarMaterias();
+  }, [filterCarrera, filterAnio, listaCarreras, listaAnios]);
+
   // Filtrado
   const filteredData = inscripciones.filter(item => {
     const matchesSearch = 
@@ -71,8 +103,9 @@ export const Dashboard = () => {
     
     const matchesCarrera = filterCarrera ? item.carrera === filterCarrera : true;
     const matchesAnio = filterAnio ? item.anio_cursada === filterAnio : true;
+    const matchesMateria = filterMateria ? item.materia === filterMateria : true;
 
-    return matchesSearch && matchesCarrera && matchesAnio;
+    return matchesSearch && matchesCarrera && matchesAnio && matchesMateria;
   });
 
   // Exportar a Excel
@@ -184,6 +217,18 @@ export const Dashboard = () => {
                     >
                         <option value="">Todos los Años</option>
                         {listaAnios.map(a => <option key={a.id_anio} value={a.nombre}>{a.nombre}</option>)}
+                    </select>
+                </div>
+                <div className="relative w-full">
+                     <Filter className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
+                     <select 
+                        className="w-full pl-10 pr-8 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500/50 text-sm appearance-none cursor-pointer disabled:opacity-50"
+                        value={filterMateria}
+                        onChange={(e) => setFilterMateria(e.target.value)}
+                        disabled={!filterCarrera || !filterAnio}
+                    >
+                        <option value="">Todas las Materias</option>
+                        {listaMaterias.map(m => <option key={m.id_materia} value={m.nombre}>{m.nombre}</option>)}
                     </select>
                 </div>
             </div>
